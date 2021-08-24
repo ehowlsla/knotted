@@ -1,60 +1,22 @@
 import 'package:flutter/material.dart';
 // import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-import 'package:knotted/page/find_id.dart';
 import 'package:knotted/theme/n_colors.dart';
 // import 'package:pintoss/api/apiProvider.dart';
 // import 'package:pintoss/api/models/resDefault.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
 
-import 'join.dart';
 
-class LoginPage extends StatefulWidget {
+class FindIDPage extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => LoginPageState();
+  State<StatefulWidget> createState() => FindIDPageState();
 }
 
-class LoginPageState extends State<LoginPage> {
+class FindIDPageState extends State<FindIDPage> {
   final textEmailController = TextEditingController();
-  final textPasswordController = TextEditingController();
-  // final provider = ApiProvider();
+  final textPhoneController = TextEditingController();
+  final textSmsNumController = TextEditingController();
 
-  goLoginRequest() async {
-    // SharedPreferences prefs = await SharedPreferences.getInstance();
-    // prefs.setString("login_id", textEmailController.text);
-
-    // Response res = await provider.postLogin(textEmailController.text.toString(), textPasswordController.text.toString());
-    // res.
-    //{error_code: 101, message: 가입되지 않은 이메일 이거나 비밀번호가 잘못되었습니다. 다시 계정을 확인해주시기 바랍니다.}
-    // print(res.body);
-    // SessionInit.fromJson(json.decode(response.content()));
-
-    // SessionInit res = await _repository.postSession(device_id);
-    // if(res.code == 0) {
-    //   SharedPreferences prefs = await SharedPreferences.getInstance();
-    //   prefs.setString('device_id', res.device_id);
-    // }
-  }
-
-  loginRequestValidate() {
-    String login_id = textEmailController.text;
-    String login_pw = textPasswordController.text;
-    if(login_id.isEmpty || login_pw.isEmpty) return throw new FormatException('로그인 ID 또는 비밀번호 값이 비어있습니다.');
-  }
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    initLoginID();
-    
-  }
-  
-  initLoginID() async {
-    // SharedPreferences prefs = await SharedPreferences.getInstance();
-    // textEmailController.text = prefs.getString('login_id');
-    // textEmailController.text(prefs.getString('login_id'));
-  }
   
   @override
   Widget build(BuildContext context) {
@@ -66,8 +28,7 @@ class LoginPageState extends State<LoginPage> {
           icon: Image.asset('images/icon_back.png', width: 10.0),
           onPressed: () => Navigator.pop(context, false),
         ),
-        // title: Image.asset('', width: 90),
-        title: Text('로그인'),
+        title: Text('아이디 찾기'),
         centerTitle: true,
         bottomOpacity: 0.0,
         elevation: 0.0,
@@ -82,8 +43,7 @@ class LoginPageState extends State<LoginPage> {
                   padding: const EdgeInsets.symmetric(horizontal: 70.0, vertical: 50.0),
                   child: Column(
                     children: [
-                      Image.asset('images/logo_smile.png', height: 80),
-                      SizedBox(height: 40.0),
+                      SizedBox(height: 120.0),
                       Row(
                         children: [
                           Container(
@@ -123,14 +83,14 @@ class LoginPageState extends State<LoginPage> {
                         children: [
                           Container(
                             width: 80,
-                            child: Text('비밀번호')
+                            child: Text('전화번호')
                           ),
                           Flexible(
                             child: Container(
                               height: 50.0,
                               child: TextField(
 
-                                controller: textPasswordController,
+                                controller: textPhoneController,
                                 keyboardType: TextInputType.text,
                                 obscureText: true,
                                 decoration: InputDecoration(
@@ -162,7 +122,7 @@ class LoginPageState extends State<LoginPage> {
                             child: Material(
                               color: Colors.transparent,
                               child: InkWell(
-                                onTap: () => Get.to(FindIDPage()),
+                                onTap: () => print(1234),
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Center(
