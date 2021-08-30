@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'home/home.dart';
+import 'smile_order/smile_order.dart';
 import 'theme/n_colors.dart';
 
 void main() {
@@ -39,9 +40,9 @@ class AppHome extends StatefulWidget {
 class _AppHomeState extends State<AppHome> {
   int _selectedIndex = 0;
   List<Widget> _widgetOptions = [
+    SmileOrder(),
+    Placeholder(),
     Home(),
-    Placeholder(),
-    Placeholder(),
     Placeholder(),
     Placeholder(),
   ];
