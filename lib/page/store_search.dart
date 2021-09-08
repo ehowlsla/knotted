@@ -8,26 +8,141 @@ import 'package:knotted/theme/n_colors.dart';
 
 
 class StoreSearch extends StatelessWidget {
+//   @override
+//   _StoreSearchState createState() => _StoreSearchState();
+// }
 
-  final textSearchController = TextEditingController();
 
+// class _StoreSearchState extends State<StoreSearch> {
+
+  TextEditingController textSearchController  = TextEditingController();
+
+  Widget _orderAble = Container(
+    width: 50,
+    height: 50,
+    decoration: BoxDecoration(
+      color: NColors.powderPink2,
+      borderRadius: BorderRadius.all(Radius.circular(25.0)),
+    ),
+    child: Center(
+      child: Text(
+        '주문\n가능 ',
+        textAlign: TextAlign.center,
+        style: TextStyle(color: NColors.textPink, fontSize: 12.0),
+      ),
+    ),
+  );
+
+  Widget _orderDisable = Container(
+    width: 50,
+    height: 50,
+    decoration: BoxDecoration(
+      color: NColors.disableGrey,
+      borderRadius: BorderRadius.all(Radius.circular(25.0)),
+    ),
+    child: Center(
+      child: Text(
+        '주문\n불가 ',
+        textAlign: TextAlign.center,
+        style: TextStyle(color: NColors.white, fontSize: 12.0),
+      ),
+    ),
+  );
+
+  // @override
+  // void initState() {
+  //   // TODO: implement initState
+  //   super.initState();
+  //   textSearchController = TextEditingController();
+  // }
   
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: NColors.powderYellow2,
-      resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        leading: IconButton(
-          icon: Image.asset('images/icon_back.png', width: 10.0),
-          onPressed: () => Navigator.pop(context, false),
+  //   return DefaultTabController(
+  //     length: 2,
+  //     child: Scaffold(
+  //       appBar: AppBar(
+  //         leading: Icon(Icons.search),
+  //         title: TextField(
+  //           controller: textSearchController,
+  //           cursorColor: Colors.white,
+  //           style: TextStyle(color: Colors.white),
+  //         ),
+  //         bottom: TabBar(tabs: [
+  //           Tab(icon: Icon(Icons.people)),
+  //           Tab(icon: Icon(Icons.location_city)),
+  //         ]),
+  //       ),
+  //       body: TabBarView(children: [Container(), Container()]),
+  //     ),
+  //   );
+  // }
+
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          leading: IconButton(
+            icon: Image.asset('images/icon_back.png', width: 10.0),
+            onPressed: () => Navigator.pop(context, false),
+          ),
+          title: TextField(
+            controller: textSearchController,
+            cursorColor: Colors.white,
+            style: TextStyle(color: Colors.white),
+          ),
+          actions: [
+            IconButton(
+              icon: Image.asset('images/icon_map.png', width: 18.0),
+              onPressed: () => print(134)
+            ),
+          ],
+          bottom: TabBar(
+            indicatorColor: NColors.powderPink,
+            tabs: [
+              Padding(
+                padding: const EdgeInsets.only(top: 15.0, bottom: 10.0),
+                child: Text('가까운 매장'),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 15.0, bottom: 10.0),
+                child: Text('즐겨찾는 매장'),
+              ),
+            ]
+          ),
+          centerTitle: true,
         ),
-        title: Text('아이디 찾기'),
-        centerTitle: true,
-        bottomOpacity: 0.0,
-        elevation: 0.0,
-      ),
-      body: SafeArea(
+        body: ListView.separated(
+            padding: const EdgeInsets.all(8),
+            itemCount: 10,
+            separatorBuilder: (context, index) {
+              return const Divider(
+                thickness: 0.5,
+              );
+            },
+            itemBuilder: (BuildContext context, int index) {
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('청담점 (500m)', style: TextStyle(color: NColors.text1, fontSize: 16.0)),
+                          Text('서울 강남구 도산대로 53길', style: TextStyle(color: NColors.text2)),
+
+                        ],
+                      ),
+                    ),
+                    index % 2 == 1 ? _orderAble : _orderDisable
+                  ],
+                ),
+              );
+            }
+        )
       ),
     );
   }
