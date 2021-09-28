@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 // import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:knotted/page/store_detail.dart';
 import 'package:knotted/theme/n_colors.dart';
 // import 'package:pintoss/api/apiProvider.dart';
 // import 'package:pintoss/api/models/resDefault.dart';
@@ -49,35 +50,8 @@ class StoreSearch extends StatelessWidget {
     ),
   );
 
-  // @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   super.initState();
-  //   textSearchController = TextEditingController();
-  // }
-  
   @override
   Widget build(BuildContext context) {
-  //   return DefaultTabController(
-  //     length: 2,
-  //     child: Scaffold(
-  //       appBar: AppBar(
-  //         leading: Icon(Icons.search),
-  //         title: TextField(
-  //           controller: textSearchController,
-  //           cursorColor: Colors.white,
-  //           style: TextStyle(color: Colors.white),
-  //         ),
-  //         bottom: TabBar(tabs: [
-  //           Tab(icon: Icon(Icons.people)),
-  //           Tab(icon: Icon(Icons.location_city)),
-  //         ]),
-  //       ),
-  //       body: TabBarView(children: [Container(), Container()]),
-  //     ),
-  //   );
-  // }
-
     return DefaultTabController(
       length: 2,
       child: Scaffold(
@@ -122,26 +96,30 @@ class StoreSearch extends StatelessWidget {
               );
             },
             itemBuilder: (BuildContext context, int index) {
-              return Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text('청담점 (500m)', style: TextStyle(color: NColors.text1, fontSize: 16.0)),
-                          Text('서울 강남구 도산대로 53길', style: TextStyle(color: NColors.text2)),
+              return InkWell(
+                onTap: () => Get.to(StoreDetail()),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text('청담점 (500m)', style: TextStyle(color: NColors.text1, fontSize: 16.0)),
+                            Text('서울 강남구 도산대로 53길', style: TextStyle(color: NColors.text2)),
 
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                    index % 2 == 1 ? _orderAble : _orderDisable
-                  ],
+                      index % 2 == 1 ? _orderAble : _orderDisable
+                    ],
+                  ),
                 ),
               );
             }
+
         )
       ),
     );
