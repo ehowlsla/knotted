@@ -1,5 +1,6 @@
 
 import 'package:get/get.dart';
+import 'package:knotted/helper/device_helper.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 //http://knotted-env.eba-cmmpd8pi.ap-northeast-2.elasticbeanstalk.com/api/documentation
@@ -178,9 +179,64 @@ class ApiProvider extends GetConnect {
    * 16. 사용자
    */
   //16-1. 로그인 - @TODO
+  Future<Response> login(String uid, String password) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var token = prefs.getString('token') ?? "";
+
+    var payload = {
+      "uid": uid,
+      "password": password,
+      "device": DeviceHelper.getDeviceModel()
+    };
+
+    return post(
+        "$defaultUrl/users/login",
+        payload,
+        contentType: 'application/json',
+        headers: {
+          'Authorization': 'Bearer $token',
+          'Accept': 'application/json'
+        }
+    );
+  }
   //16-2. 로그아웃 - @TODO
+  Future<Response> logout() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var token = prefs.getString('token') ?? "";
+
+    return get(
+        "$defaultUrl/users/logout",
+        contentType: 'application/json',
+        headers: {
+          'Authorization': 'Bearer $token',
+          'Accept': 'application/json'
+        }
+    );
+  }
+
   //16-3. 사용자목록 - 비어있음
-  //16-4. 사용자 추가 - 비어있음
+  //16-4. 사용자 추가(회원가입) - @TODO
+  Future<Response> join(String uid, String password) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var token = prefs.getString('token') ?? "";
+
+    var payload = {
+      "uid": uid,
+      "password": password,
+      "device": DeviceHelper.getDeviceModel()
+    };
+
+    return post(
+        "$defaultUrl/users/login",
+        payload,
+        contentType: 'application/json',
+        headers: {
+          'Authorization': 'Bearer $token',
+          'Accept': 'application/json'
+        }
+    );
+  }
+
   //16-5. 사용자 조회 - @TODO
   //16-6. 사용자 삭제 - 비어있음
   //16-7. 사용자 정보 수정 - 비어있음

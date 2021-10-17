@@ -1,27 +1,27 @@
 class Brand {
-  int id;
+  int? id;
 
-  int brand_id;
+  int? brand_id;
 
-  String title;
+  String? title;
 
-  String subtitle;
+  String? subtitle;
 
-  String title_en;
+  String? title_en;
 
-  String subtitle_en;
+  String? subtitle_en;
 
-  String description;
+  String? description;
 
-  String images;
+  String? images;
 
-  String ceo;
+  String? ceo;
 
-  String domain;
+  String? domain;
 
-  String api_base_url;
+  String? api_base_url;
 
-  String created_at;
+  String? created_at;
 
-  String updated_at;
+  String? updated_at;
 }

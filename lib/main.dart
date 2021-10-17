@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:knotted/helper/device_helper.dart';
 
 import 'home/home.dart';
 import 'smile_order/smile_order.dart';
 import 'theme/n_colors.dart';
 
 void main() {
+
   runApp(GetMaterialApp(
       title: '굿핀',
       initialRoute: 'home',

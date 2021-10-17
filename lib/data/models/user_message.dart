@@ -1,28 +1,28 @@
 import 'user.dart';
 
 class UserMessage {
-  int id;
+  int? id;
 
-  int user_id;
+  int? user_id;
 
-  int writer_id;
+  int? writer_id;
 
-  String title;
+  String? title;
 
-  String message;
+  String? message;
 
-  String type; // push, notice, order, pay 등
+  String? type; // push, notice, order, pay 등
 
 
-  String subtype;
+  String? subtype;
 
-  String read_at;
+  String? read_at;
 
-  String created_at;
+  String? created_at;
 
-  String updated_at;
+  String? updated_at;
 
-  User user;
+  User? user;
 
-  User writer;
+  User? writer;
 }
