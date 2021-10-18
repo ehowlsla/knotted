@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:knotted/login/login.dart';
+import 'package:knotted/page/login.dart';
 import 'package:knotted/theme/n_colors.dart';
 
 class HomeUserInfo extends StatefulWidget {

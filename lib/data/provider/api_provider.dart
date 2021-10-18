@@ -186,8 +186,10 @@ class ApiProvider extends GetConnect {
     var payload = {
       "uid": uid,
       "password": password,
-      "device": DeviceHelper.getDeviceModel()
+      "device": await DeviceHelper.getDeviceModel()
     };
+
+    print(payload);
 
     return post(
         "$defaultUrl/users/login",
@@ -240,8 +242,32 @@ class ApiProvider extends GetConnect {
   //16-5. 사용자 조회 - @TODO
   //16-6. 사용자 삭제 - 비어있음
   //16-7. 사용자 정보 수정 - 비어있음
-  //16-8. 로그인한 내 정보 반환 - @TODO
-  //16-9. 사용자 아이디 중복검사 - @TODO
+  //16-8. 로그인한 내 정보 반환
+  Future<Response> myinfo() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var token = prefs.getString('token') ?? "";
+
+    return get(
+        "$defaultUrl/users/myinfo",
+        contentType: 'application/json',
+        headers: {
+          'Authorization': 'Bearer $token',
+          'Accept': 'application/json'
+        }
+    );
+  }
+
+  //16-9. 사용자 아이디 중복검사
+  Future<Response> checkId(String uid) async {
+    return get(
+        "$defaultUrl/users/checkid/$uid",
+        contentType: 'application/json',
+        headers: {
+          'Accept': 'application/json'
+        }
+    );
+  }
+
   //16-10. 휴대폰 인증 - @TODO
   //16-11. 사용자 아이디 찾기 - @TODO
   //16-12. 사용자 비밀번호 찾기 - @TODO

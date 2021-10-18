@@ -6,12 +6,12 @@ import 'event_carousel.dart';
 import 'home_user_info.dart';
 import 'notice_carousel.dart';
 
-class Home extends StatefulWidget {
+class Tab3 extends StatefulWidget {
   @override
-  _HomeState createState() => _HomeState();
+  _Tab3State createState() => _Tab3State();
 }
 
-class _HomeState extends State<Home> {
+class _Tab3State extends State<Tab3> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
