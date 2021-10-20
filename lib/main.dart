@@ -51,8 +51,6 @@ class AppHome extends StatelessWidget {
   }
 
 
-
-
   @override
   Widget build(BuildContext context) {
 
@@ -60,7 +58,12 @@ class AppHome extends StatelessWidget {
         future: getHome(),
         builder: (BuildContext context, AsyncSnapshot<Widget> snapshot) {
           if(snapshot.connectionState == ConnectionState.waiting) {
-            return CircularProgressIndicator();
+            return Container(
+              color: Colors.white,
+              child: Center(
+                  child: CircularProgressIndicator()
+              )
+            );
           } else {
             if(snapshot.hasError) {
               // print("build ahserror ${snapshot.error}");
@@ -71,9 +74,5 @@ class AppHome extends StatelessWidget {
           }
         }
     );
-
-
-
   }
-
 }

@@ -189,8 +189,6 @@ class ApiProvider extends GetConnect {
       "device": await DeviceHelper.getDeviceModel()
     };
 
-    print(payload);
-
     return post(
         "$defaultUrl/users/login",
         payload,

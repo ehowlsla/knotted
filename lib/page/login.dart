@@ -30,23 +30,30 @@ class LoginPageState extends State<LoginPage> {
   // final provider = ApiProvider();
 
   goLoginRequest() async {
-    var provider = ApiProvider();
-    var res = await provider.login(textEmailController.text.toString().trim(), textPasswordController.text.toString().trim());
+    try {
+      loginRequestValidate();
+      var provider = ApiProvider();
+      var res = await provider.login(textEmailController.text.toString().trim(), textPasswordController.text.toString().trim());
 
-    if(res.statusCode == HttpStatus.ok) {
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      prefs.setString('login_id', textEmailController.text.toString().trim());
-      Get.offAll(() => Home());
-    } else {
-      // print(res.body);
-      Fluttertoast.showToast(msg: res.body.toString());
-    } 
+
+
+      if(res.statusCode == HttpStatus.ok) {
+          SharedPreferences prefs = await SharedPreferences.getInstance();
+          prefs.setString('login_id', textEmailController.text.toString().trim());
+          prefs.setString('token', res.body);
+          Get.offAll(() => Home());
+      } else {
+          Fluttertoast.showToast(msg: res.body.toString());
+      }
+    } on FormatException catch (e) {
+      Fluttertoast.showToast(msg: e.message);
+    }
   }
 
   loginRequestValidate() {
     String login_id = textEmailController.text;
     String login_pw = textPasswordController.text;
-    if(login_id.isEmpty || login_pw.isEmpty) return throw new FormatException('로그인 ID 또는 비밀번호 값이 비어있습니다.');
+    if(login_id.isEmpty || login_pw.isEmpty || login_id.trim().length == 0 || login_pw.trim().length == 0) return throw new FormatException('로그인 ID 또는 비밀번호 값이 비어있습니다.');
   }
 
   @override
