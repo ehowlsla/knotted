@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import 'package:knotted/page/login.dart';
 import 'package:knotted/theme/n_colors.dart';
 
+import '../join_page.dart';
+
 class HomeUserInfo extends StatefulWidget {
   @override
   _HomeUserInfoState createState() => _HomeUserInfoState();
@@ -64,7 +66,7 @@ class _HomeUserInfoState extends State<HomeUserInfo> {
                               child: Material(
                                 color: Colors.transparent,
                                 child: InkWell(
-                                  onTap: () => print(1234),
+                                  onTap: () => Get.to(JoinPage()),
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -89,7 +91,7 @@ class _HomeUserInfoState extends State<HomeUserInfo> {
                               child: Material(
                                 color: Colors.transparent,
                                 child: InkWell(
-                                  onTap: () => print(1234),
+                                  onTap: () => Get.to(LoginPage(hasAppBar: true)),
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     crossAxisAlignment: CrossAxisAlignment.center,

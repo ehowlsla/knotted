@@ -13,7 +13,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
 
 import 'home.dart';
-import 'join.dart';
+import 'join_page.dart';
 
 class LoginPage extends StatefulWidget {
 
@@ -25,21 +25,19 @@ class LoginPage extends StatefulWidget {
 }
 
 class LoginPageState extends State<LoginPage> {
-  final textEmailController = TextEditingController();
-  final textPasswordController = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
   // final provider = ApiProvider();
 
   goLoginRequest() async {
     try {
       loginRequestValidate();
       var provider = ApiProvider();
-      var res = await provider.login(textEmailController.text.toString().trim(), textPasswordController.text.toString().trim());
-
-
+      var res = await provider.login(emailController.text.toString().trim(), passwordController.text.toString().trim());
 
       if(res.statusCode == HttpStatus.ok) {
           SharedPreferences prefs = await SharedPreferences.getInstance();
-          prefs.setString('login_id', textEmailController.text.toString().trim());
+          prefs.setString('login_id', emailController.text.toString().trim());
           prefs.setString('token', res.body);
           Get.offAll(() => Home());
       } else {
@@ -51,8 +49,8 @@ class LoginPageState extends State<LoginPage> {
   }
 
   loginRequestValidate() {
-    String login_id = textEmailController.text;
-    String login_pw = textPasswordController.text;
+    String login_id = emailController.text;
+    String login_pw = passwordController.text;
     if(login_id.isEmpty || login_pw.isEmpty || login_id.trim().length == 0 || login_pw.trim().length == 0) return throw new FormatException('로그인 ID 또는 비밀번호 값이 비어있습니다.');
   }
 
@@ -67,7 +65,7 @@ class LoginPageState extends State<LoginPage> {
   initLoginID() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      textEmailController.text = prefs.getString('login_id') ?? '';
+      emailController.text = prefs.getString('login_id') ?? '';
     });
   }
 
@@ -95,7 +93,7 @@ class LoginPageState extends State<LoginPage> {
                               height: 50.0,
                               child: TextField(
 
-                                controller: textEmailController,
+                                controller: emailController,
                                 keyboardType: TextInputType.emailAddress,
                                 decoration: InputDecoration(
                                   hintText: '',
@@ -130,7 +128,7 @@ class LoginPageState extends State<LoginPage> {
                               height: 50.0,
                               child: TextField(
 
-                                controller: textPasswordController,
+                                controller: passwordController,
                                 keyboardType: TextInputType.text,
                                 obscureText: true,
                                 decoration: InputDecoration(
