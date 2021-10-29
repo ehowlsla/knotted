@@ -21,6 +21,7 @@ class JoinPageState extends State<JoinPage> {
   final address1Controller = TextEditingController();
   final address2Controller = TextEditingController();
   final birthController = TextEditingController();
+  int genderValue = 1;
 
 
   @override
@@ -62,6 +63,7 @@ class JoinPageState extends State<JoinPage> {
                               idController,
                               '',
                               false,
+                                false,
                               TextInputType.text
                             ),
                           ),
@@ -87,6 +89,7 @@ class JoinPageState extends State<JoinPage> {
                                 passwordController,
                                 '',
                                 true,
+                                false,
                                 TextInputType.text
                             ),
                           ),
@@ -103,6 +106,7 @@ class JoinPageState extends State<JoinPage> {
                             child: RoundTextField(
                                 nameController,
                                 '',
+                                false,
                                 false,
                                 TextInputType.text
                             ),
@@ -121,6 +125,7 @@ class JoinPageState extends State<JoinPage> {
                                 nicknameController,
                                 '',
                                 false,
+                                false,
                                 TextInputType.text
                             ),
                           ),
@@ -137,6 +142,7 @@ class JoinPageState extends State<JoinPage> {
                             child: RoundTextField(
                                 phoneController,
                                 '',
+                                false,
                                 false,
                                 TextInputType.text
                             ),
@@ -163,6 +169,7 @@ class JoinPageState extends State<JoinPage> {
                                 phoneCodeController,
                                 '',
                                 false,
+                                false,
                                 TextInputType.text
                             ),
                           ),
@@ -188,6 +195,7 @@ class JoinPageState extends State<JoinPage> {
                                 emailController,
                                 '',
                                 false,
+                                false,
                                 TextInputType.emailAddress
                             ),
                           ),
@@ -205,6 +213,7 @@ class JoinPageState extends State<JoinPage> {
                                 address1Controller,
                                 '',
                                 false,
+                                true,
                                 TextInputType.text
                             ),
                           ),
@@ -229,6 +238,7 @@ class JoinPageState extends State<JoinPage> {
                                 address2Controller,
                                 '',
                                 false,
+                                false,
                                 TextInputType.text
                             ),
                           ),
@@ -243,32 +253,31 @@ class JoinPageState extends State<JoinPage> {
                           ),
                           Radio(
                             value: 1,
-                            groupValue: 2,
+                            groupValue: genderValue,
                             activeColor: NColors.powderPink2,
                             onChanged: (val) {
                               setState(() {
-                                // radioButtonItem = 'ONE';
-                                // id = 1;
+                                genderValue = 1;
                               });
                             },
                           ),
                           Text(
-                            'ONE',
+                            '남자',
                             style: new TextStyle(fontSize: 17.0)
                           ),
+                          SizedBox(width: 10),
                           Radio(
                             value: 2,
-                            groupValue: 2,
+                            groupValue: genderValue,
                             activeColor: NColors.powderPink2,
                             onChanged: (val) {
                               setState(() {
-                                // radioButtonItem = 'ONE';
-                                // id = 1;
+                                genderValue = 2;
                               });
                             },
                           ),
                           Text(
-                              'TWO',
+                              '여자',
                               style: new TextStyle(fontSize: 17.0)
                           ),
                         ],
@@ -284,6 +293,7 @@ class JoinPageState extends State<JoinPage> {
                             child: RoundTextField(
                                 birthController,
                                 'YYYYMMDD (19901025)',
+                                false,
                                 false,
                                 TextInputType.number
                             ),
