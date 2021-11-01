@@ -1,5 +1,7 @@
+import 'package:daum_postcode_search/data_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:knotted/page/daum_postcode_search.dart';
 import 'package:knotted/theme/n_colors.dart';
 import 'package:knotted/theme/pink_button.dart';
 import 'package:knotted/theme/round_text_field.dart';
@@ -162,7 +164,6 @@ class JoinPageState extends State<JoinPage> {
                         children: [
                           Container(
                               width: 80,
-                              child: Text('전화번호 *')
                           ),
                           Flexible(
                             child: RoundTextField(
@@ -221,8 +222,21 @@ class JoinPageState extends State<JoinPage> {
                           PinkButton(
                               Text('우편번호 검색', style: TextStyle(color: NColors.text2)),
                               100,
-                              () => {
-                                print(555)
+                              () async {
+                                DataModel model = await Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (context) => DaumPostcodeSearchPage(),
+                                  ),
+                                );
+
+                                setState(() {
+                                  address1Controller.text = model.address;
+                                  address2Controller.text = model.buildingName;  
+                                });
+                                
+                                // print(model.address);
+                                // print(model.jibunAddress);
+                                // print(model.buildingName);
                               }
                           )
                         ],

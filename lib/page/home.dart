@@ -4,6 +4,7 @@ import 'package:knotted/page/controller/home_controller.dart';
 import 'package:knotted/smile_order/smile_order.dart';
 import 'package:knotted/theme/n_colors.dart';
 
+import 'home/tab2.dart';
 import 'home/tab3.dart';
 
 class Home extends StatelessWidget {
@@ -15,7 +16,7 @@ class Home extends StatelessWidget {
   // int _selectedIndex = 0;
   List<Widget> _widgetOptions = [
     SmileOrder(),
-    Placeholder(),
+    Tab2(),
     Tab3(),
     Placeholder(),
     Placeholder(),
